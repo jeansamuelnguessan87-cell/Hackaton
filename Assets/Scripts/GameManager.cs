@@ -4,54 +4,114 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Configuration du Score")]
+    [Header("Score & Économie")]
     public int scoreDéchets = 0;
+    public int nombreGraines = 0;
+    public int arbresPlantes = 0;
+    public int objectifArbres = 6;
+
+    [Header("Timer & Game Over")]
+    public float tempsRestant = 120f;
+    private bool jeuTermine = false;
+
+    [Header("UI")]
     public TMP_Text textScore;
+    public TMP_Text textGraines;
+    public TMP_Text textTimer;
+    public TMP_Text textObjectif; // Ajout du texte objectif
+    public TMP_Text textVictoire;
+    public TMP_Text textFin; // Texte pour Victoire ou GameOver
 
-    [Header("Objets à faire apparaître (Bouteilles, etc.)")]
+    [Header("Spawn & Caméra")]
     public GameObject[] objetsDechets;
-    public float tempsEntreApparitions = 4f;
-
-    [Header("Effets de Malus (Caméra)")]
     public GameObject mainCam;
 
     void Start()
     {
-        MettreAJourScore();
-        InvokeRepeating("SpawnDechet", 2f, tempsEntreApparitions);
+        MettreAJourUI();
+        InvokeRepeating("SpawnDechet", 2f, 4f);
+        textVictoire.gameObject.SetActive(false);
     }
 
-    void SpawnDechet()
+    void Update()
     {
-        if (objetsDechets == null || objetsDechets.Length == 0 || objetsDechets[0] == null)
+        if (jeuTermine) return;
+
+        // Gestion du Timer
+        if (tempsRestant > 0)
         {
-            Debug.LogWarning("⚠️ Attention : Aucun Prefab n'est assigné dans la liste 'Objets Dechets' du GameManager !");
-            return;
+            tempsRestant -= Time.deltaTime;
+            int minutes = Mathf.FloorToInt(tempsRestant / 60);
+            int secondes = Mathf.FloorToInt(tempsRestant % 60);
+            textTimer.text = string.Format("Temps : {0:00}:{1:00}", minutes, secondes);
         }
-
-        int randomIndex = Random.Range(0, objetsDechets.Length);
-
-        Vector3 randomPos = new Vector3(
-            Random.Range(-20f, 20f),
-            0.5f,
-            Random.Range(-20f, 20f)
-        );
-
-        Instantiate(objetsDechets[randomIndex], randomPos, Quaternion.identity);
+        else
+        {
+            FinDePartie(false); // Temps écoulé = Défaite
+        }
     }
+
+    void FinDePartie(bool estVictoire)
+    {
+        jeuTermine = true;
+        Time.timeScale = 0; // Pause le jeu
+        
+        if (textFin != null)
+        {
+            textFin.gameObject.SetActive(true);
+            textFin.text = estVictoire ? "MISSION ACCOMPLIE !" : "GAME OVER : Ville polluée !";
+        }
+    }
+
+    // --- LOGIQUE DE JEU ---
 
     public void AjouterPoint()
     {
         scoreDéchets++;
-        MettreAJourScore();
+        MettreAJourUI();
     }
 
-    void MettreAJourScore()
+    public void AjouterGraines(int quantite)
     {
-        if (textScore != null)
+        nombreGraines += quantite;
+        MettreAJourUI();
+    }
+
+    public void ArbrePlante()
+    {
+        arbresPlantes++;
+        MettreAJourUI(); // Met à jour l'objectif à chaque arbre
+        
+        if (arbresPlantes >= objectifArbres)
         {
-            textScore.SetText("Déchets ramassés : " + scoreDéchets);
+            textVictoire.text = "MISSION ACCOMPLIE !";
+            textVictoire.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
+    }
+
+    // --- UI ---
+
+    public void MettreAJourUI() // <-- J'ai ajouté 'void' ici
+    {
+        if (textScore != null) textScore.text = "Déchets : " + scoreDéchets;
+        if (textGraines != null) textGraines.text = "Graines : " + nombreGraines;
+        
+        // Mise à jour de l'objectif
+        if (textObjectif != null)
+        {
+            textObjectif.text = "Objectif : Plante 6 arbres ! (" + arbresPlantes + "/" + objectifArbres + ")";
+        }
+    }
+
+    // --- SPAWN & MALUS ---
+
+    void SpawnDechet()
+    {
+        if (objetsDechets.Length == 0) return;
+        int randomIndex = Random.Range(0, objetsDechets.Length);
+        Vector3 randomPos = new Vector3(Random.Range(-20f, 20f), 0.5f, Random.Range(-20f, 20f));
+        Instantiate(objetsDechets[randomIndex], randomPos, Quaternion.identity);
     }
 
     public void DeclencherMalus()
@@ -63,11 +123,9 @@ public class GameManager : MonoBehaviour
     {
         if (mainCam != null)
         {
-            mainCam.transform.Rotate(0, 0, 180); // Retourne la caméra
-
-            yield return new WaitForSeconds(2f); // MODIFIÉ : Attend maintenant 2 secondes au lieu de 4
-
-            mainCam.transform.Rotate(0, 0, -180); // Remet à l'endroit
+            mainCam.transform.Rotate(0, 0, 180);
+            yield return new WaitForSeconds(2f);
+            mainCam.transform.Rotate(0, 0, -180);
         }
     }
 }

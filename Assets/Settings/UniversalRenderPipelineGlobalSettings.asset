@@ -29,7 +29,6 @@ MonoBehaviour:
   m_StripUnusedVariants: 1
   m_StripScreenCoordOverrideVariants: 1
   supportRuntimeDebugDisplay: 0
-  m_EnableRenderGraph: 0
   m_Settings:
     m_SettingsList:
       m_List:
@@ -57,16 +56,19 @@ MonoBehaviour:
       - rid: 5482547021926367235
       - rid: 5482547021926367236
       - rid: 5482547021926367237
-      - rid: 5482547021926367238
+      - rid: -2
       - rid: 5482547021926367239
       - rid: 5482547021926367240
       - rid: 5482547021926367241
       - rid: 5482547021926367242
       - rid: 5482547021926367243
-      - rid: 5482547021926367244
+      - rid: -2
       - rid: 5482547021926367245
       - rid: 5482547021926367246
       - rid: 5482547021926367247
+      - rid: 5482547137232240641
+      - rid: 5482547137232240642
+      - rid: 5482547137232240643
     m_RuntimeSettings:
       m_List: []
   m_AssetVersion: 10
@@ -99,6 +101,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5482547021926367234
       type: {class: RayTracingRenderPipelineResources, ns: UnityEngine.Rendering.UnifiedRayTracing, asm: Unity.UnifiedRayTracing.Runtime}
       data:
@@ -128,26 +132,6 @@ MonoBehaviour:
       data:
         m_Version: 0
         m_IncludeTerrainShaders: 1
-    - rid: 5482547021926367238
-      type: {class: PostProcessData/ShaderResources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
-      data:
-        stopNanPS: {fileID: 4800000, guid: 1121bb4e615ca3c48b214e79e841e823, type: 3}
-        subpixelMorphologicalAntialiasingPS: {fileID: 4800000, guid: 63eaba0ebfb82cc43bde059b4a8c65f6, type: 3}
-        gaussianDepthOfFieldPS: {fileID: 4800000, guid: 5e7134d6e63e0bc47a1dd2669cedb379, type: 3}
-        bokehDepthOfFieldPS: {fileID: 4800000, guid: 2aed67ad60045d54ba3a00c91e2d2631, type: 3}
-        cameraMotionBlurPS: {fileID: 4800000, guid: 1edcd131364091c46a17cbff0b1de97a, type: 3}
-        paniniProjectionPS: {fileID: 4800000, guid: a15b78cf8ca26ca4fb2090293153c62c, type: 3}
-        lutBuilderLdrPS: {fileID: 4800000, guid: 65df88701913c224d95fc554db28381a, type: 3}
-        lutBuilderHdrPS: {fileID: 4800000, guid: ec9fec698a3456d4fb18cf8bacb7a2bc, type: 3}
-        bloomPS: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
-        temporalAntialiasingPS: {fileID: 4800000, guid: 9c70c1a35ff15f340b38ea84842358bf, type: 3}
-        LensFlareDataDrivenPS: {fileID: 4800000, guid: 6cda457ac28612740adb23da5d39ea92, type: 3}
-        LensFlareScreenSpacePS: {fileID: 4800000, guid: 701880fecb344ea4c9cd0db3407ab287, type: 3}
-        scalingSetupPS: {fileID: 4800000, guid: e8ee25143a34b8c4388709ea947055d1, type: 3}
-        easuPS: {fileID: 4800000, guid: 562b7ae4f629f144aa97780546fce7c6, type: 3}
-        uberPostPS: {fileID: 4800000, guid: e7857e9d0c934dc4f83f270f8447b006, type: 3}
-        finalPostPassPS: {fileID: 4800000, guid: c49e63ed1bbcb334780a3bd19dfed403, type: 3}
-        m_ShaderResourcesVersion: 0
     - rid: 5482547021926367239
       type: {class: URPReflectionProbeSettings, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
@@ -181,7 +165,63 @@ MonoBehaviour:
       data:
         m_Shader: {fileID: 4800000, guid: 0849e84e3d62649e8882e9d6f056a017, type: 3}
         m_Version: 0
-    - rid: 5482547021926367244
+    - rid: 5482547021926367245
+      type: {class: VrsRenderPipelineRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
+      data:
+        m_TextureComputeShader: {fileID: 7200000, guid: cacb30de6c40c7444bbc78cb0a81fd2a, type: 3}
+        m_VisualizationShader: {fileID: 4800000, guid: 620b55b8040a88d468e94abe55bed5ba, type: 3}
+        m_VisualizationLookupTable:
+          m_Data:
+          - {r: 0.785, g: 0.23, b: 0.2, a: 1}
+          - {r: 1, g: 0.8, b: 0.8, a: 1}
+          - {r: 0.4, g: 0.2, b: 0.2, a: 1}
+          - {r: 0.51, g: 0.8, b: 0.6, a: 1}
+          - {r: 0.6, g: 0.8, b: 1, a: 1}
+          - {r: 0.2, g: 0.4, b: 0.6, a: 1}
+          - {r: 0.8, g: 1, b: 0.8, a: 1}
+          - {r: 0.2, g: 0.4, b: 0.2, a: 1}
+          - {r: 0.125, g: 0.22, b: 0.36, a: 1}
+        m_ConversionLookupTable:
+          m_Data:
+          - {r: 0.785, g: 0.23, b: 0.2, a: 1}
+          - {r: 1, g: 0.8, b: 0.8, a: 1}
+          - {r: 0.4, g: 0.2, b: 0.2, a: 1}
+          - {r: 0.51, g: 0.8, b: 0.6, a: 1}
+          - {r: 0.6, g: 0.8, b: 1, a: 1}
+          - {r: 0.2, g: 0.4, b: 0.6, a: 1}
+          - {r: 0.8, g: 1, b: 0.8, a: 1}
+          - {r: 0.2, g: 0.4, b: 0.2, a: 1}
+          - {r: 0.125, g: 0.22, b: 0.36, a: 1}
+    - rid: 5482547021926367246
+      type: {class: RenderingDebuggerRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
+      data:
+        m_version: 0
+    - rid: 5482547021926367247
+      type: {class: LightmapSamplingSettings, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
+      data:
+        m_Version: 1
+        m_UseBicubicLightmapSampling: 0
+    - rid: 5482547137232240641
+      type: {class: PostProcessData/ShaderResources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
+      data:
+        stopNanPS: {fileID: 4800000, guid: 1121bb4e615ca3c48b214e79e841e823, type: 3}
+        subpixelMorphologicalAntialiasingPS: {fileID: 4800000, guid: 63eaba0ebfb82cc43bde059b4a8c65f6, type: 3}
+        gaussianDepthOfFieldPS: {fileID: 4800000, guid: 5e7134d6e63e0bc47a1dd2669cedb379, type: 3}
+        bokehDepthOfFieldPS: {fileID: 4800000, guid: 2aed67ad60045d54ba3a00c91e2d2631, type: 3}
+        cameraMotionBlurPS: {fileID: 4800000, guid: 1edcd131364091c46a17cbff0b1de97a, type: 3}
+        paniniProjectionPS: {fileID: 4800000, guid: a15b78cf8ca26ca4fb2090293153c62c, type: 3}
+        lutBuilderLdrPS: {fileID: 4800000, guid: 65df88701913c224d95fc554db28381a, type: 3}
+        lutBuilderHdrPS: {fileID: 4800000, guid: ec9fec698a3456d4fb18cf8bacb7a2bc, type: 3}
+        bloomPS: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
+        temporalAntialiasingPS: {fileID: 4800000, guid: 9c70c1a35ff15f340b38ea84842358bf, type: 3}
+        LensFlareDataDrivenPS: {fileID: 4800000, guid: 6cda457ac28612740adb23da5d39ea92, type: 3}
+        LensFlareScreenSpacePS: {fileID: 4800000, guid: 701880fecb344ea4c9cd0db3407ab287, type: 3}
+        scalingSetupPS: {fileID: 4800000, guid: e8ee25143a34b8c4388709ea947055d1, type: 3}
+        easuPS: {fileID: 4800000, guid: 562b7ae4f629f144aa97780546fce7c6, type: 3}
+        uberPostPS: {fileID: 4800000, guid: e7857e9d0c934dc4f83f270f8447b006, type: 3}
+        finalPostPassPS: {fileID: 4800000, guid: c49e63ed1bbcb334780a3bd19dfed403, type: 3}
+        m_ShaderResourcesVersion: 0
+    - rid: 5482547137232240642
       type: {class: PostProcessData/TextureResources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         blueNoise16LTex:
@@ -231,42 +271,17 @@ MonoBehaviour:
         smaaAreaTex: {fileID: 2800000, guid: d1f1048909d55cd4fa1126ab998f617e, type: 3}
         smaaSearchTex: {fileID: 2800000, guid: 51eee22c2a633ef4aada830eed57c3fd, type: 3}
         m_TexturesResourcesVersion: 0
-    - rid: 5482547021926367245
-      type: {class: VrsRenderPipelineRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
+    - rid: 5482547137232240643
+      type: {class: WorldRenderPipelineResources, ns: UnityEngine.PathTracing.Core, asm: Unity.PathTracing.Runtime}
       data:
-        m_TextureComputeShader: {fileID: 7200000, guid: cacb30de6c40c7444bbc78cb0a81fd2a, type: 3}
-        m_VisualizationShader: {fileID: 4800000, guid: 620b55b8040a88d468e94abe55bed5ba, type: 3}
-        m_VisualizationLookupTable:
-          m_Data:
-          - {r: 0.785, g: 0.23, b: 0.2, a: 1}
-          - {r: 1, g: 0.8, b: 0.8, a: 1}
-          - {r: 0.4, g: 0.2, b: 0.2, a: 1}
-          - {r: 0.51, g: 0.8, b: 0.6, a: 1}
-          - {r: 0.6, g: 0.8, b: 1, a: 1}
-          - {r: 0.2, g: 0.4, b: 0.6, a: 1}
-          - {r: 0.8, g: 1, b: 0.8, a: 1}
-          - {r: 0.2, g: 0.4, b: 0.2, a: 1}
-          - {r: 0.125, g: 0.22, b: 0.36, a: 1}
-        m_ConversionLookupTable:
-          m_Data:
-          - {r: 0.785, g: 0.23, b: 0.2, a: 1}
-          - {r: 1, g: 0.8, b: 0.8, a: 1}
-          - {r: 0.4, g: 0.2, b: 0.2, a: 1}
-          - {r: 0.51, g: 0.8, b: 0.6, a: 1}
-          - {r: 0.6, g: 0.8, b: 1, a: 1}
-          - {r: 0.2, g: 0.4, b: 0.6, a: 1}
-          - {r: 0.8, g: 1, b: 0.8, a: 1}
-          - {r: 0.2, g: 0.4, b: 0.2, a: 1}
-          - {r: 0.125, g: 0.22, b: 0.36, a: 1}
-    - rid: 5482547021926367246
-      type: {class: RenderingDebuggerRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
-      data:
-        m_version: 0
-    - rid: 5482547021926367247
-      type: {class: LightmapSamplingSettings, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
-      data:
-        m_Version: 1
-        m_UseBicubicLightmapSampling: 0
+        _version: 3
+        _blitCubemap: {fileID: 7200000, guid: 5a992812cb320d146a66cc600200cce7, type: 3}
+        _blitGrayScaleCookie: {fileID: 7200000, guid: 557fa399e33bf7647bda5697c5c158df, type: 3}
+        _setAlphaChannelShader: {fileID: 7200000, guid: 5efaea0e81c66334aa9d062d6573e6fd, type: 3}
+        _environmentImportanceSamplingBuild: {fileID: 7200000, guid: 5bb2534d2411d344cbc54f880232640f, type: 3}
+        _skyBoxMesh: {fileID: 4300000, guid: 0529e6c5f6dea8c4a8c2835ed7de57cb, type: 2}
+        _sixFaceSkyBoxMesh: {fileID: 4300000, guid: a80925ceebd011741b42509226cefc74, type: 2}
+        _buildLightGridShader: {fileID: 7200000, guid: 16e47c1641bd0104e92b624601457bb0, type: 3}
     - rid: 6852985685364965376
       type: {class: URPShaderStrippingSetting, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
@@ -351,7 +366,6 @@ MonoBehaviour:
       type: {class: RenderGraphSettings, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
-        m_EnableRenderCompatibilityMode: 0
     - rid: 6852985685364965386
       type: {class: GPUResidentDrawerResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.GPUDriven.Runtime}
       data:
